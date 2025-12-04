@@ -1,318 +1,217 @@
-# Decision Tree Classification Model for Play Prediction
+# Credit Card Clustering Analysis
 
-[![Python 3.7+](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-brightgreen.svg)](https://scikit-learn.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## Project Overview
 
-## 📋 Table of Contents
+This project implements a comprehensive machine learning analysis on credit card customer data using unsupervised clustering techniques. The analysis aims to identify distinct customer segments based on their credit card usage patterns, enabling better understanding of customer behavior and facilitating targeted marketing strategies.
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Usage](#usage)
-- [Model Details](#model-details)
-- [Results](#results)
-- [Contributing](#contributing)
-- [License](#license)
+## Key Features
 
-## 🎯 Project Overview
+- **Data Exploration & Preprocessing**: Comprehensive exploratory data analysis (EDA) with data cleaning and normalization
+- **K-Means Clustering**: Implementation of K-means algorithm with optimal cluster determination using the elbow method
+- **Hierarchical Clustering**: Agglomerative hierarchical clustering analysis with dendrograms
+- **Anomaly Detection**: Identification of outliers and unusual customer behavior patterns
+- **Statistical Analysis**: Detailed statistical insights and distribution analysis
+- **Visualization**: Multiple plots and charts for intuitive understanding of clustering results
 
-This project implements a professional Decision Tree classification model for predicting the "Play" outcome based on weather conditions. The model utilizes scikit-learn's robust implementation with hyperparameter tuning, comprehensive evaluation metrics, and production-ready code structure.
+## Dataset
 
-### Key Objectives
+The project utilizes the **CC GENERAL.csv** dataset containing credit card customer information with the following key features:
 
-- Build a high-performance Decision Tree classifier
-- Implement proper data preprocessing and feature engineering
-- Perform hyperparameter optimization using GridSearchCV
-- Evaluate model performance with multiple metrics
-- Provide reusable, well-documented code modules
+- Customer demographics and account information
+- Transaction history and spending patterns
+- Payment behavior and credit utilization
+- Account tenure and credit limits
 
-## ✨ Features
+## Project Highlights
 
-### Core Functionality
+### Clustering Methodology
 
-- **Data Preprocessing**: Categorical encoding with OneHotEncoder
-- **Pipeline Architecture**: Scikit-learn Pipeline for reproducible preprocessing and modeling
-- **Hyperparameter Tuning**: GridSearchCV with cross-validation
-- **Model Evaluation**: Accuracy, Confusion Matrix, Classification Report
-- **Visualization**: Decision tree visualization, feature analysis plots
-- **Model Persistence**: Save/load trained models using pickle
+1. **Data Preprocessing**: Handling missing values, feature scaling, and normalization
+2. **Optimal Cluster Selection**: Using the elbow method and silhouette score analysis
+3. **Multiple Clustering Approaches**: Comparison of K-means and hierarchical clustering results
+4. **Anomaly Detection**: Statistical methods to identify outliers in customer segments
 
-### Supporting Utilities
+### Insights Generated
 
-- Confusion matrix visualization with heatmaps
-- ROC curve plotting and AUC calculation
-- Class distribution analysis
-- Model comparison framework
-- Learning curve visualization
-- Comprehensive metrics reporting
+- Identification of distinct customer segments with unique spending behaviors
+- Characterization of high-value vs. low-value customers
+- Discovery of at-risk customer segments
+- Recommendations for customer-focused strategies
 
-## 📁 Project Structure
-
-```
-Mihir_Brahmaniya_CreditCard_Clustering/
-├── CC GENERAL.csv                      # Original credit card dataset
-├── Mihir_Brahmaniya_CreditCard_Clustering.ipynb  # Jupyter notebook with full analysis
-├── decision_tree_model.py              # Main Decision Tree model class
-├── utils.py                            # Utility functions for visualization and evaluation
-├── requirements.txt                    # Project dependencies
-├── README.md                           # This file
-└── .gitignore                          # Git ignore file
-```
-
-## 🚀 Installation
+## Getting Started
 
 ### Prerequisites
 
-- Python 3.7 or higher
-- pip (Python package manager)
-
-### Setup
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/meet2121/Mihir_Brahmaniya_CreditCard_Clustering.git
-   cd Mihir_Brahmaniya_CreditCard_Clustering
-   ```
-
-2. **Create Virtual Environment (Optional but Recommended)**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## ⚡ Quick Start
-
-### Using the Decision Tree Model
-
-```python
-from decision_tree_model import DecisionTreeModel
-
-# Initialize the model
-model = DecisionTreeModel(random_state=42)
-
-# Run the complete pipeline
-model.run_full_pipeline(save_model=True)
-
-# Make predictions on new data
-sample = {
-    'Outlook': 'Sunny',
-    'Temperature': 'Cool',
-    'Humidity': 'High',
-    'Windy': False
-}
-prediction, probabilities = model.predict_sample(sample)
-print(f"Prediction: {prediction[0]}")
-print(f"Probabilities: {probabilities[0]}")
-```
-
-### Using the Jupyter Notebook
+Ensure you have the following libraries installed:
 
 ```bash
-jupyter notebook
-# Open: Mihir_Brahmaniya_CreditCard_Clustering.ipynb
+pip install pandas numpy scikit-learn matplotlib seaborn scipy
 ```
 
-## 📚 Usage
+Required packages:
 
-### 1. Data Loading and Exploration
+- **pandas**: Data manipulation and analysis
+- **numpy**: Numerical computing
+- **scikit-learn**: Machine learning algorithms
+- **matplotlib & seaborn**: Data visualization
+- **scipy**: Statistical analysis
 
-```python
-model = DecisionTreeModel()
-model.load_data(None)  # Loads sample data
-model.display_data()
-```
+### Running the Notebook
 
-### 2. Data Preprocessing
+1. **Clone or download the repository**
+2. **Launch Jupyter Notebook**
+   ```bash
+   jupyter notebook
+   ```
+3. **Open the notebook file**
+   - Navigate to `Mihir_Brahmaniya_CreditCard_Clustering.ipynb`
+   - Click to open the notebook
+4. **Ensure dataset is available**
+   - Verify that `CC GENERAL.csv` is in the same directory as the notebook
+   - The notebook will load and preprocess the data automatically
+5. **Execute the cells**
+   - Run cells sequentially from top to bottom
+   - Each section includes explanations and visualizations
+   - Results will be displayed inline within the notebook
 
-```python
-model.preprocess_data(test_size=0.25, stratify=True)
-```
-
-### 3. Model Training
-
-```python
-model.build_pipeline()
-model.hyperparameter_tuning(cv=3)
-```
-
-### 4. Model Evaluation
-
-```python
-accuracy = model.evaluate()
-model.visualize_tree(figsize=(14, 8))
-```
-
-### 5. Utility Functions
-
-```python
-from utils import print_model_metrics, plot_confusion_matrix
-
-# Print detailed metrics
-print_model_metrics(y_test, y_pred, model_name='Decision Tree')
-
-# Plot confusion matrix
-plot_confusion_matrix(y_test, y_pred)
-```
-
-## 🔧 Model Details
-
-### Data Features
-
-| Feature | Type | Values |
-|---------|------|--------|
-| Outlook | Categorical | Sunny, Overcast, Rain |
-| Temperature | Categorical | Hot, Mild, Cool |
-| Humidity | Categorical | High, Normal |
-| Windy | Boolean | True, False |
-
-### Target Variable
-
-| Class | Description |
-|-------|-------------|
-| Yes | Play is recommended |
-| No | Play is not recommended |
-
-### Model Architecture
+## Project Structure
 
 ```
-Pipeline:
-├── ColumnTransformer
-│   └── OneHotEncoder (for categorical features)
-└── DecisionTreeClassifier
-    ├── max_depth: Tuned via GridSearchCV
-    ├── min_samples_leaf: Tuned via GridSearchCV
-    └── random_state: 42 (for reproducibility)
+.
+├── CC GENERAL.csv                              # Credit card dataset
+├── Mihir_Brahmaniya_CreditCard_Clustering.ipynb # Main analysis notebook
+├── decision_tree_model.py                       # Decision Tree model class
+├── utils.py                                    # Utility functions
+├── requirements.txt                            # Project dependencies
+└── README.md                                   # This file
 ```
 
-## 📊 Results
+## Analysis Workflow
 
-### Model Performance
+1. **Data Loading & Exploration**
+   - Load the CSV dataset
+   - Explore dimensions, data types, and statistical summaries
+   - Identify missing values and data quality issues
 
-- **Test Accuracy**: 75%+
-- **Cross-Validation Score**: Tuned via GridSearchCV
-- **Confusion Matrix**: Available in evaluation output
+2. **Data Cleaning & Preprocessing**
+   - Handle missing values appropriately
+   - Remove duplicates if present
+   - Feature engineering and transformation
 
-### Hyperparameter Optimization
+3. **Feature Scaling & Normalization**
+   - Standardize features for fair comparison
+   - Apply appropriate scaling techniques
 
-The model uses GridSearchCV to find optimal hyperparameters:
-- `max_depth`: [None, 1, 2, 3, 4]
-- `min_samples_leaf`: [1, 2]
-- Cross-validation folds: 3
-- Scoring metric: Accuracy
+4. **Clustering Analysis**
+   - Apply K-means algorithm with various k values
+   - Generate elbow curves for optimal k selection
+   - Perform hierarchical clustering
+   - Compare results from different algorithms
 
-## 🤝 Contributing
+5. **Anomaly Detection**
+   - Identify statistical outliers
+   - Analyze unusual customer patterns
+
+6. **Results & Interpretation**
+   - Visualize clustering results
+   - Generate customer segment profiles
+   - Provide actionable insights
+
+## Expected Outputs
+
+The notebook generates:
+
+- Clustering visualizations and dendrograms
+- Cluster profiles and characteristics
+- Statistical summaries of each segment
+- Anomaly detection reports
+- Insights and recommendations
+
+## Requirements & Dependencies
+
+- Python 3.7 or higher
+- Jupyter Notebook or JupyterLab
+- See `Getting Started` section for package requirements
+
+## Key Findings
+
+The analysis reveals distinct customer segments with different:
+
+- Average spending patterns
+- Credit utilization behaviors
+- Payment frequencies and amounts
+- Account activity levels
+
+These insights can be leveraged for:
+
+- Personalized marketing campaigns
+- Risk assessment and credit decisions
+- Customer retention strategies
+- Product recommendations
+
+## Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
 1. **Fork the Repository**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/Mihir_Brahmaniya_CreditCard_Clustering.git
-   ```
+   - Click the fork button to create your own copy
 
 2. **Create a Feature Branch**
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-3. **Make Changes**
-   - Follow PEP 8 style guidelines
-   - Add docstrings to functions
-   - Include type hints where applicable
+3. **Make Your Changes**
+   - Implement improvements or fixes
+   - Add comments and documentation
+   - Follow Python best practices
 
-4. **Commit Changes**
+4. **Commit Your Changes**
    ```bash
-   git commit -m "Add description of changes"
+   git commit -m "Add descriptive message about your changes"
    ```
 
-5. **Push to Branch**
+5. **Push to Your Branch**
    ```bash
    git push origin feature/your-feature-name
    ```
 
-6. **Submit Pull Request**
-   - Provide clear description of changes
+6. **Submit a Pull Request**
+   - Provide a clear description of your changes
    - Reference any related issues
+   - Wait for review and feedback
 
-## 📝 Code Quality
+## Potential Improvements
 
-### Standards
+- Implementation of additional clustering algorithms (DBSCAN, Gaussian Mixture Models)
+- Deep learning approaches for feature extraction
+- Real-time clustering predictions
+- Interactive dashboards for visualization
+- Time-series analysis of customer behavior evolution
 
-- **Style Guide**: PEP 8
-- **Documentation**: NumPy-style docstrings
-- **Type Hints**: Python 3.7+ type annotations
-- **Testing**: pytest framework
+## License
 
-### Running Tests
+This project is open source and available under the MIT License.
 
-```bash
-pytest tests/ -v --cov=decision_tree_model
-```
+## Contact & Support
 
-## 📦 Dependencies
+For questions, suggestions, or collaboration opportunities, please reach out through:
 
-### Core Libraries
-- `pandas` (>=1.3.0): Data manipulation and analysis
-- `numpy` (>=1.21.0): Numerical computing
-- `scikit-learn` (>=1.0.0): Machine learning algorithms
-- `matplotlib` (>=3.4.0): Plotting and visualization
-- `seaborn` (>=0.11.0): Statistical data visualization
+- **GitHub Issues**: Open an issue for bug reports or feature requests
+- **Pull Requests**: Submit improvements and enhancements
 
-### Development Tools
-- `jupyter`: Interactive notebooks
-- `pytest`: Testing framework
-- `black`: Code formatter
-- `flake8`: Code linter
+## Acknowledgments
 
-## 🔐 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👤 Author
-
-**Mihir Brahmaniya**
-- GitHub: [@meet2121](https://github.com/meet2121)
-- Email: Contact via GitHub profile
-
-## 🙏 Acknowledgments
-
-- Scikit-learn team for excellent ML library
-- The data science community for best practices and guidance
+- Dataset source and credit card industry best practices
+- Machine learning community for algorithms and techniques
 - Contributors and reviewers
 
-## 📞 Support & Contact
+## References
 
-- **Issues**: Report bugs via GitHub Issues
-- **Discussions**: Use GitHub Discussions for questions
-- **Pull Requests**: Suggestions for improvements welcome
+- scikit-learn documentation: https://scikit-learn.org/
+- Pandas documentation: https://pandas.pydata.org/
+- Clustering algorithms overview: https://en.wikipedia.org/wiki/Cluster_analysis
 
-## 📈 Future Improvements
+**Last Updated**: November 2024
 
-- [ ] Add cross-validation strategies (k-fold, stratified)
-- [ ] Implement ensemble methods (Random Forest, Gradient Boosting)
-- [ ] Add SHAP analysis for model interpretability
-- [ ] Create REST API for model serving
-- [ ] Add automated testing pipeline (CI/CD)
-- [ ] Deploy model as web application
-- [ ] Add feature importance analysis
-- [ ] Implement model versioning
-
-## 📚 References
-
-- [Scikit-learn Documentation](https://scikit-learn.org/)
-- [Decision Trees Theory](https://en.wikipedia.org/wiki/Decision_tree)
-- [Model Evaluation Metrics](https://scikit-learn.org/stable/modules/model_evaluation.html)
-- [Hyperparameter Tuning](https://scikit-learn.org/stable/modules/grid_search.html)
-
----
-
-**Last Updated**: December 2024
-**Version**: 1.0.0
-**Status**: Production Ready ✅
+**Project Status**: Active Development
